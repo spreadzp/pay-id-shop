@@ -8,7 +8,7 @@ fs.readFile(f, "utf8", function (err, data) {
   }
   var result = data.replace(
     /node: false/g,
-    "node: {crypto: true, stream: true, fs: 'empty', net: 'empty'}"
+    "node: {crypto: true, stream: true, fs: 'empty', net: 'empty', http2: true}"
   );
 
   fs.writeFile(f, result, "utf8", function (err) {
