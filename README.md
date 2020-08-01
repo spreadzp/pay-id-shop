@@ -1,5 +1,6 @@
 # Angular-9 - ShoppingCart + MDBootstrap + Firebase (Realtime Database) + i18n
 
+site deployed on https://spreadzp.github.io/pay-id-shop/
 [![HitCount](http://hits.dwyl.io/ikismail/Angular-ShoppingCart.svg)](http://hits.dwyl.io/ikismail/Angular-ShoppingCart)
 [![GitHub forks](https://img.shields.io/github/forks/ikismail/Angular-ShoppingCart.svg)](https://github.com/ikismail/Angular-ShoppingCart/network) [![GitHub stars](https://img.shields.io/github/stars/ikismail/Angular-ShoppingCart.svg)](https://github.com/ikismail/Angular-ShoppingCart/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/ikismail/Angular-ShoppingCart.svg)](https://github.com/ikismail/Angular-ShoppingCart/issues)
@@ -107,11 +108,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 10. Run the Server.
 
+## Deploy GitHub Pages
 
-## How can I support the developer ?
-
-- Star my Github repo ⭐
-- Create pull requests, submit bugs, suggest new features or documentation updates 🛠
+```
+npm run github-deploy
+```
 
 ## Screenshots:
 

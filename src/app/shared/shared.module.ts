@@ -30,6 +30,7 @@ import { FireBaseConfig } from "./../../environments/firebase.config";
 import { FileService } from "./services/file.service";
 import { PriceService } from "./services/price.services";
 import { TableSortableComponent } from "./elements/table-sortable/table-sortable.component";
+import { PayIdService } from "./services/pay-id.service";
 
 @NgModule({
   imports: [
@@ -88,6 +89,7 @@ import { TableSortableComponent } from "./elements/table-sortable/table-sortable
     FormBuilder,
     FileService,
     PriceService,
+    PayIdService,
   ],
 })
 export class SharedModule {}
