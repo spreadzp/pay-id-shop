@@ -59,7 +59,6 @@
     "font-awesome": "^4.7.0",
     "google-auth-library": "^6.0.2",
     "html2canvas": "^1.0.0-rc.5",
-    "http2": "^3.3.7",
     "jquery": "^3.5.0",
     "jspdf": "^1.5.3",
     "lodash": "^4.17.15",
