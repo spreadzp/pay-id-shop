@@ -116,6 +116,8 @@ npm run github-deploy
 
 ## Screenshots:
 
+convert -delay 100 -loop 0 \*.png animation.mpeg
+
 ### Home Page:
 
 ![Alt text](https://github.com/ikismail/Angular-ShoppingCart/blob/master/screenshots/home.PNG "Home Page")

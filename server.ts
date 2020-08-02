@@ -1,5 +1,7 @@
 import "zone.js/dist/zone-node";
-
+(global as any).WebSocket = require("ws");
+(global as any).XMLHttpRequest = require("xhr2");
+(global as any).Http2 = require("http2");
 import { ngExpressEngine } from "@nguniversal/express-engine";
 import * as express from "express";
 import { join } from "path";
@@ -11,11 +13,15 @@ import { existsSync } from "fs";
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
   const server = express();
-  const distFolder = join(process.cwd(), "dist/shopping-cart/browser");
+  const distFolder = join(process.cwd(), "dist/payidshop/browser");
   const indexHtml = existsSync(join(distFolder, "index.original.html"))
     ? "index.original.html"
     : "index";
-
+  const domino = require("domino");
+  const win = domino.createWindow(indexHtml);
+  global["window"] = win;
+  global["Event"] = win.Event; // assign the `win.Event` to prop `Event`
+  global["document"] = win.document;
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine(
     "html",
@@ -28,7 +34,7 @@ export function app() {
   server.set("views", distFolder);
 
   // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
+  // server.get("/api/**", (req, res) => { });
   // Serve static files from /browser
   server.get(
     "*.*",
@@ -58,8 +64,8 @@ function run() {
   });
 }
 
-// Webpack will replace 'require' with '__webpack_require__'
-// '__non_webpack_require__' is a proxy to Node 'require'
+// Webpack will replace "require" with "__webpack_require__"
+// "__non_webpack_require__" is a proxy to Node "require"
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;

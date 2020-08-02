@@ -18,7 +18,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService) {
-  return () => service.use("ru");
+  return () => service.use("en");
 }
 @NgModule({
   declarations: [AppComponent],

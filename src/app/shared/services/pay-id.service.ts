@@ -1,39 +1,95 @@
 import { Injectable } from "@angular/core";
-import { XrpClient, XrplNetwork, PayIdClient } from "xpring-js";
+import { HttpClient } from "@angular/common/http";
+const RippleAPI = require("ripple-lib").RippleAPI;
 
 @Injectable({
   providedIn: "root",
 })
 export class PayIdService {
+  api = null;
   grpcUrl = null;
   ilpClient = null;
   xrpClient = null;
   payIdClient = null;
-  constructor() {
-    this.grpcUrl = "prod.grpcng.wallet.xpring.io"; // Testnet ILP Wallet URL
-    // this.ilpClient = new IlpClient(this.grpcUrl);
-    const remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
-    //
-
-    try {
-      this.payIdClient = new PayIdClient();
-
-      // return await payIdClient.cryptoAddressForPayId(payId, network)
-      // console.log(resolvedAddressDetails.address)
-      // this.xrpClient = new XrpClient(remoteURL, XrplNetwork.Test, true);
-    } catch (e) {
-      console.log("e :>>  ", e);
-    }
+  ownerAddress = "rJbWARGgCEwHcMn2vKqo4ho76AtzzPGC7X";
+  constructor(private httpClient: HttpClient) {
+    this.api = new RippleAPI({
+      server: "wss://s.altnet.rippletest.net:51233", // Public rippled server
+    });
   }
 
   getBalance() {
-    const address = "X7u4MQVhU2YxS4P9fWzQjnNuDRUkP3GM6kiVjTjcQgUU3Jr";
-    const payId = "stormtv$xpring.money";
-    const network = "btc-mainnet";
+    return this.api.connect().then(() => {
+      console.log("getting account info for", this.ownerAddress);
+      return this.api.getAccountInfo(this.ownerAddress);
+    });
+  }
 
-    // return this.payIdClient.cryptoAddressForPayId(payId, network);
-    //console.log(resolvedAddressDetails.address)
-    return Promise.resolve(123);
-    //return  this.xrpClient.getBalance(address);
+  doPayment(sum: number, senderAddress: string, secret: string) {
+    // this.api = new RippleAPI({
+    //   server: "wss://s.altnet.rippletest.net:51233" // Public rippled server
+    // });
+    this.api
+      .connect()
+      .then(() => {
+        return this.doPrepare(senderAddress, sum);
+      })
+      .then((tx) => {
+        console.log(tx);
+
+        return this.sign(tx, secret);
+
+        /* end custom code -------------------------------------- */
+      })
+      .then((txBlob) => {
+        return this.doSubmit(txBlob);
+      })
+      .catch(console.error);
+  }
+
+  async doPrepare(sender: string, sum: number) {
+    const preparedTx = await this.api.prepareTransaction(
+      {
+        TransactionType: "Payment",
+        Account: sender,
+        Amount: await this.api.xrpToDrops(sum.toString()),
+        Destination: this.ownerAddress,
+      },
+      {
+        // Expire this transaction if it doesn"t execute within ~5 minutes:
+        maxLedgerVersionOffset: 75,
+      }
+    );
+    console.log("preparedTx :>> ", preparedTx);
+    // const maxLedgerVersion = preparedTx.instructions.maxLedgerVersion;
+    // console.log("Prepared transaction instructions:", preparedTx.txJSON);
+    // console.log("Transaction cost:", preparedTx.instructions.fee, "XRP");
+    // console.log("Transaction expires after ledger:", maxLedgerVersion);
+    return preparedTx.txJSON;
+  }
+
+  async sign(tx: string, secret: string) {
+    console.log("@@@@@tx :>> ", tx);
+    const response = await this.api.sign(tx, secret);
+    const txID = response.id;
+    console.log("Identifying hash:", txID);
+    const txBlob = response.signedTransaction;
+    console.log("Signed blob:", txBlob);
+    return txBlob;
+  }
+
+  // use txBlob from the previous example
+  async doSubmit(txBlob) {
+    const latestLedgerVersion = await this.api.getLedgerVersion();
+
+    const result = this.api.submit(txBlob);
+
+    console.log("Tentative result code:", result.resultCode);
+    console.log("Tentative result message:", result.resultMessage);
+
+    // Return the earliest ledger index this transaction could appear in
+    // as a result of this submission, which is the first one after the
+    // validated ledger at time of submission.
+    return latestLedgerVersion + 1;
   }
 }

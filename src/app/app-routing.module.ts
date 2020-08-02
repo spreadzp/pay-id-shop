@@ -2,6 +2,7 @@ import { PageNotFoundComponent } from "./shared/components/page-not-found/page-n
 import { NoAccessComponent } from "./shared/components/no-access/no-access.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AboutComponent } from "./shared/components/about/about.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: "about", component: AboutComponent },
   { path: "no-access", component: NoAccessComponent },
   { path: "**", component: PageNotFoundComponent },
 ];

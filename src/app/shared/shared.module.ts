@@ -31,6 +31,7 @@ import { FileService } from "./services/file.service";
 import { PriceService } from "./services/price.services";
 import { TableSortableComponent } from "./elements/table-sortable/table-sortable.component";
 import { PayIdService } from "./services/pay-id.service";
+import { AboutComponent } from "./components/about/about.component";
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { PayIdService } from "./services/pay-id.service";
     CardLoaderComponent,
     MomentTimeAgoPipe,
     TableSortableComponent,
+    AboutComponent,
   ],
   exports: [
     NoProductsFoundComponent,
