@@ -2,7 +2,7 @@
 
 Developing a **ShoppingCart (Ecommerce) Application using Angular-9**.
 
-**Live Demo** : [Angular-shopping-cart](https://angular-shoppingcart.firebaseapp.com/)
+**Live Demo** : [PayId Shop](https://spreadzp.github.io/pay-id-shop/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
 
@@ -105,17 +105,7 @@ npm run github-deploy
 
 ## Screenshots:
 
-### Home Page:
-
-![Alt text](https://github.com/ikismail/Angular-ShoppingCart/blob/master/screenshots/home.PNG "Home Page")
-
-### Products Page:
-
-![Alt text](https://github.com/ikismail/Angular-ShoppingCart/blob/master/screenshots/products.PNG "Home Page")
-
-### Work Board Page:
-
-![Alt text](https://github.com/ikismail/Angular-ShoppingCart/blob/master/screenshots/drag&drop.PNG "Home Page")
+convert -delay 100 -loop 0 \*.png animation.mpeg
 
 ## Development server
 
@@ -147,4 +137,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## License
 
-This project is licensed under the MIT License - see the [MIT license](https://github.com/ikismail/Angular-ShoppingCart/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [MIT license](https://github.com/spreadzp/pay-id-shop/blob/master/LICENSE) file for details
