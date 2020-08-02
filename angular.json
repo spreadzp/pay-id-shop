@@ -185,6 +185,10 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {}
+        },
+        "deploy-gh": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
