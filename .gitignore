@@ -42,3 +42,5 @@ Thumbs.db
 /src/environments/firebase.ConfigDummy.ts
 firebase.json
 .travis.yml
+/src/environments/firebase.config.ts
+tasks

@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, DoCheck } from "@angular/core";
 import { PayIdService } from "src/app/shared/services/pay-id.service";
+// import { PayIdService } from "src/app/shared/services/pay-id.service";
 
 @Component({
   selector: "app-balance",
@@ -8,8 +9,8 @@ import { PayIdService } from "src/app/shared/services/pay-id.service";
 })
 export class BalanceComponent implements OnInit {
   balance = null;
+  //
   constructor(private payIdService: PayIdService) {}
-
   ngOnInit(): void {
     this.payIdService
       .getBalance()

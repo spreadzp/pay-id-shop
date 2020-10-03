@@ -7,10 +7,12 @@ import { AuthService } from "src/app/shared/services/auth.service";
   templateUrl: "./user-account.component.html",
   styleUrls: ["./user-account.component.scss"],
 })
-export class UserAccountComponent implements AfterViewInit {
+export class UserAccountComponent implements OnInit {
   // Enable Update Button
-
+  showBalance = false;
   constructor(public authService: AuthService) {}
 
-  ngAfterViewInit(): void {}
+  ngOnInit(): void {
+    this.showBalance = true;
+  }
 }

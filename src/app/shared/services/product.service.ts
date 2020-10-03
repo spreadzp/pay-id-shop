@@ -127,6 +127,10 @@ export class ProductService {
     localStorage.setItem("avct_item", JSON.stringify(products));
   }
 
+  clearBacket() {
+    localStorage.setItem("avct_item", "[]");
+  }
+
   // Fetching Locat CartsProducts
   getLocalCartProducts(): Product[] {
     const products: Product[] =

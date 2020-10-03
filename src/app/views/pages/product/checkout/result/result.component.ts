@@ -59,11 +59,15 @@ export class ResultComponent implements OnInit {
   }
 
   payment(totalSum: number) {
-    const result = this.payIdService.doPayment(
-      totalSum,
-      "rnPtkxF79LwCgCgxhZADA8qQS1GhetYy2R",
-      "snRq1KMdS75DUZaTDf4SykuJDyoX9"
-    );
-    this.toastrService.success("Success payment", JSON.stringify(result));
+    this.payIdService
+      .doPayment(
+        totalSum,
+        "rnPtkxF79LwCgCgxhZADA8qQS1GhetYy2R",
+        "snRq1KMdS75DUZaTDf4SykuJDyoX9"
+      )
+      .then((result) => {
+        this.productService.clearBacket();
+        this.toastrService.success("Success payment", JSON.stringify(result));
+      });
   }
 }
