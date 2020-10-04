@@ -1,5 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, NO_ERRORS_SCHEMA, APP_INITIALIZER } from "@angular/core";
+import {
+  NgModule,
+  NO_ERRORS_SCHEMA,
+  APP_INITIALIZER,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from "@angular/core";
 
 // Firebase Config
 
@@ -15,6 +20,7 @@ import { UserModule } from "./views/pages/user/user.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { XprBalanceComponent } from "./views/pages/user/xpr-balance/xpr-balance.component";
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService) {
@@ -37,8 +43,10 @@ export function setupTranslateFactory(service: TranslateService) {
       registrationStrategy: "registerImmediately",
     }),
     // AngularFireModule.initializeApp(FireBaseConfig),
+
     // AngularFireDatabaseModule,
   ],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     TranslateService,
     {
@@ -49,6 +57,5 @@ export function setupTranslateFactory(service: TranslateService) {
     },
   ],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

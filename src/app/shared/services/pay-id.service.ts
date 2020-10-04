@@ -20,16 +20,16 @@ export class PayIdService {
 
   getBalance() {
     return this.api.connect().then(() => {
-      console.log("getting account info for", this.ownerAddress);
+      // console.log("getting account info for", this.ownerAddress);
       return this.api.getAccountInfo(this.ownerAddress);
     });
   }
 
-  doPayment(sum: number, senderAddress: string, secret: string) {
+  async doPayment(sum: number, senderAddress: string, secret: string) {
     // this.api = new RippleAPI({
     //   server: "wss://s.altnet.rippletest.net:51233" // Public rippled server
     // });
-    this.api
+    return this.api
       .connect()
       .then(() => {
         return this.doPrepare(senderAddress, sum);

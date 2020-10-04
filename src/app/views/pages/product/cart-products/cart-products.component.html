@@ -81,6 +81,9 @@
     <div class="col-4">
       <app-cart-calculator [products]="cartProducts"></app-cart-calculator>
     </div>
+    <div class="col-4">
+      <!-- <app-balance></app-balance> -->
+    </div>
   </div>
 </div>
 <div class="container" *ngIf="cartProducts.length === 0">
@@ -89,3 +92,4 @@
     [description]="messageDescription"
   ></app-no-products-found>
 </div>
+<app-balance></app-balance>

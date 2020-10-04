@@ -24,6 +24,8 @@ import { UploaderComponent } from "../uploader/uploader.component";
 import { DropzoneDirective } from "../../directives/dropzone.directive";
 import { UploadTaskComponent } from "../upload-task/upload-task.component";
 import { TableSortableDirective } from "../../directives/table-sortable.directive";
+import { XprBalanceComponent } from "../user/xpr-balance/xpr-balance.component";
+import { BalanceComponent } from "../user/balance/balance.component";
 
 @NgModule({
   imports: [
@@ -47,6 +49,8 @@ import { TableSortableDirective } from "../../directives/table-sortable.directiv
     DropzoneDirective,
     UploadTaskComponent,
     TableSortableDirective,
+    XprBalanceComponent,
+    BalanceComponent,
   ],
   exports: [BestProductComponent],
 })
